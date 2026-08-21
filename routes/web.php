@@ -28,20 +28,20 @@ Route::get('/', function () {
 // AUTH
 // ======================================================
 
-Route::get('/login', [
-    AuthenticatedSessionController::class,
-    'showLogin'
-])->name('login');
+// Route::get('/login', [
+//     AuthenticatedSessionController::class,
+//     'showLogin'
+// ])->name('login');
 
-Route::post('/login', [
-    AuthenticatedSessionController::class,
-    'login'
-])->name('login.proses');
+// Route::post('/login', [
+//     AuthenticatedSessionController::class,
+//     'login'
+// ])->name('login.proses');
 
-Route::post('/logout', [
-    AuthenticatedSessionController::class,
-    'logout'
-])->name('logout');
+// Route::post('/logout', [
+//     AuthenticatedSessionController::class,
+//     'logout'
+// ])->name('logout');
 
 
 // ======================================================
