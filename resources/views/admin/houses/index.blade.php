@@ -9,7 +9,7 @@
 <div class="bg-[#FFFDF8] rounded-xl shadow-sm overflow-hidden">
 
     <div class="px-5 py-4 border-b border-[#EEE8DD]
-                flex items-center justify-between">
+                flex justify-between items-center">
 
         <div>
             <h3 class="font-semibold">
@@ -17,13 +17,14 @@
             </h3>
 
             <p class="text-xs text-gray-500 mt-1">
-                Rumah pengguna yang menggunakan sistem RASA.
+                Rumah pengguna yang terdaftar dalam sistem.
             </p>
         </div>
 
         <a href="{{ route('admin.houses.create') }}"
-            class="bg-[#315B72] text-white px-4 py-2
-                   rounded-lg text-sm hover:bg-[#24465A] transition">
+            class="bg-[#315B72] text-white
+                   px-4 py-2 rounded-lg text-sm
+                   hover:bg-[#24465A] transition">
 
             + Tambah Rumah
 
@@ -52,6 +53,10 @@
 
                 <th class="px-5 py-3 text-center">
                     Status
+                </th>
+
+                <th class="px-5 py-3 text-center">
+                    Perangkat
                 </th>
 
                 <th class="px-5 py-3 text-center">
@@ -84,12 +89,16 @@
 
 
                 <td class="px-5 py-4">
+
                     {{ $house->owner_name }}
+
                 </td>
 
 
                 <td class="px-5 py-4 text-center">
+
                     {{ $house->standard_voltage }} V
+
                 </td>
 
 
@@ -97,8 +106,8 @@
 
                     @if($house->status === 'active')
 
-                        <span class="inline-flex px-2 py-1
-                                     text-xs font-semibold
+                        <span class="inline-flex items-center
+                                     px-2 py-1 text-xs font-semibold
                                      bg-green-100 text-green-700 rounded">
 
                             Aktif
@@ -107,8 +116,8 @@
 
                     @else
 
-                        <span class="inline-flex px-2 py-1
-                                     text-xs font-semibold
+                        <span class="inline-flex items-center
+                                     px-2 py-1 text-xs font-semibold
                                      bg-red-100 text-red-600 rounded">
 
                             Diblokir
@@ -120,13 +129,21 @@
                 </td>
 
 
+                <td class="px-5 py-4 text-center">
+
+                    {{ $house->electronics_count ?? 0 }}
+
+                </td>
+
+
                 <td class="px-5 py-4">
 
                     <div class="flex justify-center gap-2">
 
                         <a href="{{ route('admin.houses.show', $house) }}"
                             class="px-3 py-1 rounded-lg
-                                   bg-[#E7F0F4] text-[#315B72]">
+                                   bg-[#E7F0F4] text-[#315B72]
+                                   hover:bg-[#D9E7ED] transition">
 
                             Detail
 
@@ -140,9 +157,10 @@
 
                                 @csrf
 
-                                <button
+                                <button type="submit"
                                     class="px-3 py-1 rounded-lg
-                                           bg-red-50 text-red-600">
+                                           bg-red-50 text-red-600
+                                           hover:bg-red-100 transition">
 
                                     Blokir
 
@@ -157,9 +175,10 @@
 
                                 @csrf
 
-                                <button
+                                <button type="submit"
                                     class="px-3 py-1 rounded-lg
-                                           bg-green-50 text-green-700">
+                                           bg-green-50 text-green-700
+                                           hover:bg-green-100 transition">
 
                                     Aktifkan
 
@@ -179,7 +198,7 @@
 
             <tr>
 
-                <td colspan="5"
+                <td colspan="6"
                     class="text-center py-10 text-gray-400">
 
                     Belum ada rumah yang terdaftar.
