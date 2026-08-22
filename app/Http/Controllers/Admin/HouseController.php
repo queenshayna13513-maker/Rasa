@@ -68,26 +68,21 @@ class HouseController extends Controller
         return view('admin.houses.edit', compact('house'));
     }
 
-    public function update(Request $request, House $house)
-    {
-        $validated = $request->validate([
-            'elderly_name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string'],
-            'phone' => ['nullable', 'string', 'max:30'],
-            'nominal_voltage' => ['required', 'numeric', 'min:0'],
-            'status' => [
-                'required',
-                Rule::in(['active', 'blocked']),
-            ],
-        ]);
+   public function update(Request $request, House $house)
+{
+    $validated = $request->validate([
+        
+        'phone' => ['nullable', 'string', 'max:30'],
+        'address' => ['nullable', 'string'],
+        'standard_voltage' => ['required', 'numeric', 'min:0'],
+    ]);
 
-        $house->update($validated);
+    $house->update($validated);
 
-        return redirect()
-            ->route('admin.houses.show', $house)
-            ->with('success', 'Data rumah berhasil diperbarui.');
-    }
-
+    return redirect()
+        ->route('admin.houses.show', $house)
+        ->with('success', 'Data rumah berhasil diperbarui.');
+}
     public function destroy(House $house)
     {
         $house->delete();

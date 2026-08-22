@@ -18,14 +18,14 @@ class ElectronicDeviceController extends Controller
     {
         $house = $this->house();
 
-        $devices = $house
+        $electronics = $house
             ? $house->electronicDevices()->latest()->paginate(10)
             : collect();
 
-        return view(
-            'user.devices.index',
-            compact('devices', 'house')
-        );
+        return view('user.electronics.index', compact(
+            'electronics',
+            'house'
+        ));
     }
 
     public function create()
@@ -34,10 +34,7 @@ class ElectronicDeviceController extends Controller
 
         abort_unless($house, 404);
 
-        return view(
-            'user.devices.create',
-            compact('house')
-        );
+        return view('user.electronics.create', compact('house'));
     }
 
     public function store(Request $request)
@@ -57,51 +54,51 @@ class ElectronicDeviceController extends Controller
         $house->electronicDevices()->create($validated);
 
         return redirect()
-            ->route('user.devices.index')
+            ->route('user.electronics.index')
             ->with(
                 'success',
                 'Perangkat berhasil ditambahkan.'
             );
     }
 
-    public function show(ElectronicDevice $device)
+    public function show(ElectronicDevice $electronic)
     {
         $house = $this->house();
 
         abort_unless(
-            $house && $device->house_id === $house->id,
+            $house && $electronic->house_id === $house->id,
             403
         );
 
         return view(
-            'user.devices.show',
-            compact('device')
+            'user.electronics.show',
+            compact('electronic')
         );
     }
 
-    public function edit(ElectronicDevice $device)
+    public function edit(ElectronicDevice $electronic)
     {
         $house = $this->house();
 
         abort_unless(
-            $house && $device->house_id === $house->id,
+            $house && $electronic->house_id === $house->id,
             403
         );
 
         return view(
-            'user.devices.edit',
-            compact('device')
+            'user.electronics.edit',
+            compact('electronic')
         );
     }
 
     public function update(
         Request $request,
-        ElectronicDevice $device
+        ElectronicDevice $electronic
     ) {
         $house = $this->house();
 
         abort_unless(
-            $house && $device->house_id === $house->id,
+            $house && $electronic->house_id === $house->id,
             403
         );
 
@@ -113,29 +110,29 @@ class ElectronicDeviceController extends Controller
             'status' => ['required', 'in:active,inactive'],
         ]);
 
-        $device->update($validated);
+        $electronic->update($validated);
 
         return redirect()
-            ->route('user.devices.index')
+            ->route('user.electronics.index')
             ->with(
                 'success',
                 'Perangkat berhasil diperbarui.'
             );
     }
 
-    public function destroy(ElectronicDevice $device)
+    public function destroy(ElectronicDevice $electronic)
     {
         $house = $this->house();
 
         abort_unless(
-            $house && $device->house_id === $house->id,
+            $house && $electronic->house_id === $house->id,
             403
         );
 
-        $device->delete();
+        $electronic->delete();
 
         return redirect()
-            ->route('user.devices.index')
+            ->route('user.electronics.index')
             ->with(
                 'success',
                 'Perangkat berhasil dihapus.'

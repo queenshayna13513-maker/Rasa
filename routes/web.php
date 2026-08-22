@@ -62,15 +62,17 @@ Route::middleware(['auth'])->group(function () {
 
 
             // System Logs
-            Route::get('/logs', [
-                SystemLogController::class,
-                'index'
-            ])->name('logs.index');
+             Route::get('/activity-logs', [SystemLogController::class, 'index'])
+            ->name('activity-logs.index');
+            // Route::get('/logs', [
+            //     SystemLogController::class,
+            //     'index'
+            // ])->name('logs.index');
 
-            Route::get('/logs/{log}', [
-                SystemLogController::class,
-                'show'
-            ])->name('logs.show');
+            // Route::get('/logs/{log}', [
+            //     SystemLogController::class,
+            //     'show'
+            // ])->name('logs.show');
 
 
             // Global Settings
@@ -90,64 +92,69 @@ Route::middleware(['auth'])->group(function () {
     // USER
     // ==================================================
 
-    Route::middleware('role:user')
-        ->prefix('user')
-        ->name('user.')
-        ->group(function () {
+   // ==================================================
+// USER
+// ==================================================
 
-            // Dashboard
-            Route::get('/dashboard', [
-                UserDashboardController::class,
-                'index'
-            ])->name('dashboard');
+Route::middleware('role:user')
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
 
-
-            // Electronic Devices
-            Route::resource(
-                'devices',
-                ElectronicDeviceController::class
-            );
+        // Dashboard
+        Route::get('/dashboard', [
+            UserDashboardController::class,
+            'index'
+        ])->name('dashboard');
 
 
-            // Alert Center
-            Route::get('/alerts', [
-                AlertController::class,
-                'index'
-            ])->name('alerts.index');
-
-            Route::post('/alerts/{alert}/read', [
-                AlertController::class,
-                'read'
-            ])->name('alerts.read');
-
-            Route::post('/alerts/read-all', [
-                AlertController::class,
-                'readAll'
-            ])->name('alerts.readAll');
+        // Electronic Devices
+        Route::resource(
+            'electronics',
+            ElectronicDeviceController::class
+        );
 
 
-            // House Profile
-            Route::get('/profile', [
-                HouseProfileController::class,
-                'index'
-            ])->name('profile.index');
+        // Alert Center
+        Route::get('/alerts', [
+            AlertController::class,
+            'index'
+        ])->name('alerts.index');
 
-            Route::put('/profile', [
-                HouseProfileController::class,
-                'update'
-            ])->name('profile.update');
+        Route::post('/alerts/{alert}/read', [
+            AlertController::class,
+            'read'
+        ])->name('alerts.read');
+
+        Route::post('/alerts/read-all', [
+            AlertController::class,
+            'readAll'
+        ])->name('alerts.readAll');
 
 
-            // Emergency Power
-            Route::post('/emergency/off', [
-                EmergencyController::class,
-                'off'
-            ])->name('emergency.off');
+        // House Profile
+        Route::get('/profile', [
+            HouseProfileController::class,
+            'index'
+        ])->name('profile.index');
 
-            Route::post('/emergency/on', [
-                EmergencyController::class,
-                'on'
-            ])->name('emergency.on');
-        });
+        Route::put('/profile', [
+            HouseProfileController::class,
+            'update'
+        ])->name('profile.update');
+
+
+        // Emergency Power
+        Route::post('/emergency/off', [
+            EmergencyController::class,
+            'off'
+        ])->name('emergency.off');
+
+        Route::post('/emergency/on', [
+            EmergencyController::class,
+            'on'
+        ])->name('emergency.on');
+
+    });
 
 });

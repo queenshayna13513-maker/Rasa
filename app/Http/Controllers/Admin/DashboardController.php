@@ -42,6 +42,9 @@ class DashboardController extends Controller
             today()
         )->count();
 
+        // Data rumah untuk dashboard
+        $houses = House::latest()->paginate(10);
+
         return view('admin.dashboard', compact(
             'totalHouses',
             'activeHouses',
@@ -52,7 +55,8 @@ class DashboardController extends Controller
             'systemErrors',
             'recentLogs',
             'recentAlerts',
-            'totalReadingsToday'
+            'totalReadingsToday',
+            'houses'
         ));
     }
 }

@@ -6,120 +6,452 @@
 
 @section('content')
 
-<div class="max-w-3xl">
+<style>
 
-<form method="POST"
-    action="{{ route('admin.houses.store') }}"
-    class="bg-[#FFFDF8] rounded-xl shadow-sm p-6">
+    /* =========================
+       ADD HOUSE
+    ========================= */
 
-    @csrf
+    .add-house-wrapper {
+        max-width: 850px;
+        margin: 0 auto;
+    }
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    .add-house-card {
+        background: #fffdf8;
+        border: 1px solid #e5ded2;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(49, 91, 114, 0.06);
+    }
 
-        <div class="md:col-span-2">
 
-            <label class="block text-sm font-medium mb-2">
-                Nama Rumah
-            </label>
+    /* =========================
+       FORM HEADER
+    ========================= */
 
-            <input type="text"
-                name="name"
-                value="{{ old('name') }}"
-                placeholder="Contoh: Rumah Ibu Sari"
-                class="w-full rounded-lg border-[#DDD6CA]
-                       focus:border-[#315B72] focus:ring-[#315B72]">
+    .add-house-header {
+        padding-bottom: 20px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #e8e1d6;
+    }
+
+    .add-house-header h3 {
+        margin: 0;
+
+        font-size: 18px;
+        font-weight: 700;
+
+        color: #2f414b;
+    }
+
+    .add-house-header p {
+        margin-top: 6px;
+
+        font-size: 13px;
+
+        color: #7a7d7c;
+    }
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .form-row {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 18px;
+    }
+
+    .form-label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-size: 13px;
+        font-weight: 600;
+
+        color: #37474f;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+        box-sizing: border-box;
+
+        border: 1px solid #d8d1c6;
+        border-radius: 11px;
+
+        background: #ffffff;
+
+        color: #37474f;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.2s ease;
+    }
+
+    .form-input {
+        height: 45px;
+
+        padding: 0 14px;
+    }
+
+    .form-textarea {
+        padding: 12px 14px;
+
+        resize: vertical;
+
+        min-height: 100px;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+        color: #a0a3a2;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+        border-color: #315b72;
+
+        box-shadow:
+            0 0 0 3px
+            rgba(49, 91, 114, 0.10);
+    }
+
+
+    /* =========================
+       VOLTAGE
+    ========================= */
+
+    .voltage-wrapper {
+        position: relative;
+    }
+
+    .voltage-wrapper .form-input {
+        padding-right: 45px;
+    }
+
+    .voltage-unit {
+        position: absolute;
+
+        right: 15px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        font-size: 13px;
+
+        color: #8b8e8c;
+
+        pointer-events: none;
+    }
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-message {
+        margin-top: 5px;
+
+        font-size: 12px;
+
+        color: #dc2626;
+    }
+
+
+    /* =========================
+       ACTION BUTTON
+    ========================= */
+
+    .form-actions {
+        display: flex;
+
+        justify-content: flex-end;
+        align-items: center;
+
+        gap: 12px;
+
+        margin-top: 30px;
+
+        padding-top: 22px;
+
+        border-top: 1px solid #e8e1d6;
+    }
+
+    .btn-cancel,
+    .btn-save {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        height: 44px;
+
+        padding: 0 22px;
+
+        border-radius: 11px;
+
+        font-size: 13px;
+        font-weight: 600;
+
+        text-decoration: none;
+
+        cursor: pointer;
+
+        transition: all 0.2s ease;
+
+        box-sizing: border-box;
+    }
+
+
+    /* CANCEL */
+
+    .btn-cancel {
+        background: #f3efe7;
+
+        color: #5f625f;
+
+        border: 1px solid #ddd5c8;
+    }
+
+    .btn-cancel:hover {
+        background: #e9e2d7;
+    }
+
+
+    /* SAVE */
+
+    .btn-save {
+        background: #315b72;
+
+        color: #ffffff;
+
+        border: 1px solid #315b72;
+
+        min-width: 145px;
+
+        box-shadow:
+            0 3px 8px
+            rgba(49, 91, 114, 0.15);
+    }
+
+    .btn-save:hover {
+        background: #274b5e;
+
+        border-color: #274b5e;
+
+        transform: translateY(-1px);
+
+        box-shadow:
+            0 5px 12px
+            rgba(49, 91, 114, 0.20);
+    }
+
+    .btn-save:active {
+        transform: translateY(0);
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+        .add-house-wrapper {
+            max-width: 100%;
+        }
+
+        .add-house-card {
+            padding: 20px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+
+            gap: 0;
+        }
+
+        .form-actions {
+            flex-direction: column-reverse;
+
+            align-items: stretch;
+        }
+
+        .btn-cancel,
+        .btn-save {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<div class="add-house-wrapper">
+
+    <form method="POST"
+        action="{{ route('admin.houses.store') }}"
+        class="add-house-card">
+
+        @csrf
+
+
+        {{-- =========================
+            HEADER
+        ========================= --}}
+
+        <div class="add-house-header">
+
+            <h3>
+                Informasi Rumah
+            </h3>
+
+            <p>
+                Masukkan informasi rumah yang akan
+                terhubung dengan sistem RASA.
+            </p>
 
         </div>
 
 
-        <div>
 
-            <label class="block text-sm font-medium mb-2">
-                Nama Pemilik
-            </label>
+        {{-- =========================
+            FORM
+        ========================= --}}
 
-            <input type="text"
-                name="owner_name"
-                value="{{ old('owner_name') }}"
-                placeholder="Nama pemilik rumah"
-                class="w-full rounded-lg border-[#DDD6CA]">
-
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
 
-        <div>
-
-            <label class="block text-sm font-medium mb-2">
-                Nomor Telepon
-            </label>
-
-            <input type="text"
-                name="phone"
-                value="{{ old('phone') }}"
-                placeholder="08xxxxxxxxxx"
-                class="w-full rounded-lg border-[#DDD6CA]">
-
-        </div>
+            
 
 
-        <div class="md:col-span-2">
 
-            <label class="block text-sm font-medium mb-2">
-                Alamat
-            </label>
+            {{-- NAMA PEMILIK --}}
 
-            <textarea name="address"
-                rows="3"
-                class="w-full rounded-lg border-[#DDD6CA]"
-                placeholder="Alamat lengkap rumah">{{ old('address') }}</textarea>
+            <div class="form-group">
 
-        </div>
+                <label class="form-label">
+                    Nama Pemilik
+                </label>
 
-
-        <div>
-
-            <label class="block text-sm font-medium mb-2">
-                Tegangan Standar
-            </label>
-
-            <div class="relative">
-
-                <input type="number"
-                    name="standard_voltage"
-                    value="{{ old('standard_voltage', 220) }}"
-                    class="w-full rounded-lg border-[#DDD6CA] pr-10">
-
-                <span class="absolute right-3 top-2.5 text-sm text-gray-400">
-                    V
-                </span>
+                <input
+                    type="text"
+                    name="owner_name"
+                    value="{{ old('owner_name') }}"
+                    placeholder="Nama pemilik rumah"
+                    class="form-input"
+                >
 
             </div>
 
+
+
+            {{-- NOMOR TELEPON --}}
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Nomor Telepon
+                </label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    value="{{ old('phone') }}"
+                    placeholder="08xxxxxxxxxx"
+                    class="form-input"
+                >
+
+            </div>
+
+
+
+            {{-- ALAMAT --}}
+
+            <div class="md:col-span-2 form-group">
+
+                <label class="form-label">
+                    Alamat
+                </label>
+
+                <textarea
+                    name="address"
+                    rows="3"
+                    class="form-textarea"
+                    placeholder="Alamat lengkap rumah"
+                >{{ old('address') }}</textarea>
+
+            </div>
+
+
+
+            {{-- TEGANGAN --}}
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Tegangan Standar
+                </label>
+
+                <div class="voltage-wrapper">
+
+                    <input
+                        type="number"
+                        name="standard_voltage"
+                        value="{{ old('standard_voltage', 220) }}"
+                        class="form-input"
+                    >
+
+                    <span class="voltage-unit">
+                        V
+                    </span>
+
+                </div>
+
+            </div>
+
+
         </div>
 
-    </div>
 
 
-    <div class="flex justify-end gap-3 mt-6">
+        {{-- =========================
+            BUTTON
+        ========================= --}}
 
-        <a href="{{ route('admin.houses.index') }}"
-            class="px-4 py-2 rounded-lg bg-[#F3EFE7] text-sm">
+        <div class="form-actions">
 
-            Batal
+            <a
+                href="{{ route('admin.houses.index') }}"
+                class="btn-cancel"
+            >
+                Batal
+            </a>
 
-        </a>
 
-        <button
-            class="px-4 py-2 rounded-lg
-                   bg-[#315B72] text-white text-sm">
+            <button
+                type="submit"
+                class="btn-save"
+            >
+                Simpan Rumah
+            </button>
 
-            Simpan Rumah
+        </div>
 
-        </button>
 
-    </div>
-
-</form>
+    </form>
 
 </div>
 

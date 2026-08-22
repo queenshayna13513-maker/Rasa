@@ -9,12 +9,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $house = Auth::user()->house()
+        $user = Auth::user();
+
+        $house = $user->house()
             ->withCount('electronicDevices')
             ->first();
 
         if (!$house) {
             return view('user.dashboard', [
+                'user' => $user,
                 'house' => null,
                 'latestReading' => null,
                 'powerReadings' => collect(),
@@ -46,6 +49,7 @@ class DashboardController extends Controller
         );
 
         return view('user.dashboard', compact(
+            'user',
             'house',
             'latestReading',
             'powerReadings',

@@ -6,120 +6,396 @@
 
 @section('content')
 
-<div class="bg-[#FFFDF8] rounded-xl shadow-sm overflow-hidden">
+<style>
 
-    <div class="px-5 py-4 border-b border-[#EEE8DD]">
+    /* =========================
+       ACTIVITY LOG
+    ========================= */
 
-        <h3 class="font-semibold">
+    .activity-card {
+        background: #fffdf8;
+
+        border: 1px solid #e5ded2;
+        border-radius: 18px;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 4px 15px
+            rgba(49, 91, 114, 0.06);
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .activity-card-header {
+        padding: 22px 25px;
+
+        border-bottom: 1px solid #e8e1d6;
+    }
+
+    .activity-card-header h3 {
+        margin: 0;
+
+        font-size: 17px;
+        font-weight: 700;
+
+        color: #2f414b;
+    }
+
+    .activity-card-header p {
+        margin-top: 5px;
+
+        font-size: 13px;
+
+        color: #7a7d7c;
+    }
+
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .activity-table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .activity-table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        font-size: 13px;
+    }
+
+
+    /* TABLE HEADER */
+
+    .activity-table thead {
+        background: #f3efe7;
+    }
+
+    .activity-table th {
+        padding: 13px 18px;
+
+        text-align: left;
+
+        font-size: 12px;
+        font-weight: 600;
+
+        color: #606867;
+
+        white-space: nowrap;
+    }
+
+    .activity-table th.text-center {
+        text-align: center;
+    }
+
+
+    /* TABLE BODY */
+
+    .activity-table tbody tr {
+        border-top: 1px solid #eee8dd;
+
+        transition: background 0.2s ease;
+    }
+
+    .activity-table tbody tr:hover {
+        background: #faf7f1;
+    }
+
+    .activity-table td {
+        padding: 16px 18px;
+
+        color: #4b565b;
+
+        vertical-align: middle;
+    }
+
+    .activity-table td.text-center {
+        text-align: center;
+    }
+
+
+    /* =========================
+       TIME
+    ========================= */
+
+    .activity-time {
+        color: #7a7d7c;
+
+        white-space: nowrap;
+    }
+
+
+    /* =========================
+       HOUSE
+    ========================= */
+
+    .activity-house {
+        font-weight: 600;
+
+        color: #37474f;
+    }
+
+
+    /* =========================
+       ACTIVITY
+    ========================= */
+
+    .activity-message {
+        color: #4b565b;
+
+        line-height: 1.5;
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .activity-status {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        min-width: 68px;
+
+        padding: 6px 10px;
+
+        border-radius: 8px;
+
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+
+    .status-error {
+        background: #fdf0ef;
+
+        color: #b34a43;
+
+        border: 1px solid #f3d8d5;
+    }
+
+
+    .status-offline {
+        background: #fff5e8;
+
+        color: #a96720;
+
+        border: 1px solid #f3dfc5;
+    }
+
+
+    .status-normal {
+        background: #edf7f0;
+
+        color: #397052;
+
+        border: 1px solid #dcecdf;
+    }
+
+
+    /* =========================
+       EMPTY STATE
+    ========================= */
+
+    .activity-empty {
+        padding: 50px 20px !important;
+
+        text-align: center;
+
+        color: #8b8e8c !important;
+    }
+
+
+    /* =========================
+       PAGINATION
+    ========================= */
+
+    .activity-pagination {
+        padding: 18px 25px;
+
+        border-top: 1px solid #e8e1d6;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+        .activity-table {
+            min-width: 700px;
+        }
+
+        .activity-card-header {
+            padding: 20px;
+        }
+
+    }
+
+</style>
+
+
+<div class="activity-card">
+
+
+    {{-- =========================
+        HEADER
+    ========================= --}}
+
+    <div class="activity-card-header">
+
+        <h3>
             Riwayat Aktivitas
         </h3>
 
-        <p class="text-xs text-gray-500 mt-1">
+        <p>
             Digunakan untuk membantu proses maintenance.
         </p>
 
     </div>
 
 
-    <table class="w-full text-sm">
 
-        <thead class="bg-[#F3EFE7] text-gray-600">
+    {{-- =========================
+        TABLE
+    ========================= --}}
 
-            <tr>
+    <div class="activity-table-wrapper">
 
-                <th class="px-5 py-3 text-left">
-                    Waktu
-                </th>
+        <table class="activity-table">
 
-                <th class="px-5 py-3 text-left">
-                    Rumah
-                </th>
+            <thead>
 
-                <th class="px-5 py-3 text-left">
-                    Aktivitas
-                </th>
+                <tr>
 
-                <th class="px-5 py-3 text-center">
-                    Status
-                </th>
+                    <th>
+                        Waktu
+                    </th>
 
-            </tr>
+                    <th>
+                        Rumah
+                    </th>
 
-        </thead>
+                    <th>
+                        Aktivitas
+                    </th>
+
+                    <th class="text-center">
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
 
 
-        <tbody>
+            <tbody>
 
-            @forelse($logs as $log)
+                @forelse($logs as $log)
 
-            <tr class="border-t border-[#EEE8DD]">
+                <tr>
 
-                <td class="px-5 py-4 text-gray-500">
-                    {{ $log->created_at }}
-                </td>
 
-                <td class="px-5 py-4 font-medium">
-                    {{ $log->house->name ?? '-' }}
-                </td>
+                    {{-- WAKTU --}}
 
-                <td class="px-5 py-4">
-                    {{ $log->activity ?? $log->message ?? '-' }}
-                </td>
+                    <td class="activity-time">
+                        {{ $log->created_at }}
+                    </td>
 
-                <td class="px-5 py-4 text-center">
 
-                    @if(($log->status ?? '') === 'error')
+                    {{-- RUMAH --}}
 
-                        <span class="px-2 py-1 rounded
-                                     bg-red-100 text-red-600 text-xs">
-                            Error
-                        </span>
+                    <td class="activity-house">
+                        {{ $log->house->name ?? '-' }}
+                    </td>
 
-                    @elseif(($log->status ?? '') === 'offline')
 
-                        <span class="px-2 py-1 rounded
-                                     bg-orange-100 text-orange-700 text-xs">
-                            Offline
-                        </span>
+                    {{-- AKTIVITAS --}}
 
-                    @else
+                    <td class="activity-message">
+                        {{ $log->activity ?? $log->message ?? '-' }}
+                    </td>
 
-                        <span class="px-2 py-1 rounded
-                                     bg-green-100 text-green-700 text-xs">
-                            Normal
-                        </span>
 
-                    @endif
+                    {{-- STATUS --}}
 
-                </td>
+                    <td class="text-center">
 
-            </tr>
+                        @if(($log->status ?? '') === 'error')
 
-            @empty
+                            <span class="activity-status status-error">
+                                Error
+                            </span>
 
-            <tr>
-                <td colspan="4"
-                    class="text-center py-10 text-gray-400">
+                        @elseif(($log->status ?? '') === 'offline')
 
-                    Belum ada aktivitas sistem.
+                            <span class="activity-status status-offline">
+                                Offline
+                            </span>
 
-                </td>
-            </tr>
+                        @else
 
-            @endforelse
+                            <span class="activity-status status-normal">
+                                Normal
+                            </span>
 
-        </tbody>
+                        @endif
 
-    </table>
+                    </td>
 
+
+                </tr>
+
+                @empty
+
+                <tr>
+
+                    <td
+                        colspan="4"
+                        class="activity-empty"
+                    >
+
+                        Belum ada aktivitas sistem.
+
+                    </td>
+
+                </tr>
+
+                @endforelse
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+    {{-- =========================
+        PAGINATION
+    ========================= --}}
 
     @if($logs->hasPages())
 
-        <div class="px-5 py-4 border-t border-[#EEE8DD]">
+        <div class="activity-pagination">
+
             {{ $logs->links() }}
+
         </div>
 
     @endif
+
 
 </div>
 

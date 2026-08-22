@@ -22,7 +22,7 @@ class SystemLogController extends Controller
 
         $logs = $query->paginate(15)->withQueryString();
 
-        return view('admin.logs.index', compact('logs'));
+        return view('admin.activity-logs.index', compact('logs'));
     }
 
     public function show(SystemLog $log)
