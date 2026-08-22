@@ -54,6 +54,107 @@
 
 
     /* =========================
+       HEADER RIGHT
+    ========================= */
+
+    .house-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    .house-search {
+        position: relative;
+        width: 260px;
+    }
+
+    .house-search input {
+        width: 100%;
+        height: 42px;
+
+        padding: 0 40px 0 40px;
+
+        border-radius: 11px;
+
+        background: #ffffff;
+
+        border: 1px solid #ddd6ca;
+
+        color: #37474f;
+
+        font-size: 13px;
+
+        outline: none;
+
+        transition: all 0.2s ease;
+    }
+
+    .house-search input::placeholder {
+        color: #9a9c9b;
+    }
+
+    .house-search input:focus {
+        border-color: #315b72;
+
+        box-shadow:
+            0 0 0 3px
+            rgba(49, 91, 114, 0.08);
+    }
+
+    .house-search-icon {
+        position: absolute;
+
+        left: 13px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 17px;
+        height: 17px;
+
+        color: #8b8e8c;
+
+        pointer-events: none;
+    }
+
+    .house-search-clear {
+        position: absolute;
+
+        right: 10px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 24px;
+        height: 24px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 6px;
+
+        color: #8b8e8c;
+
+        text-decoration: none;
+
+        font-size: 16px;
+
+        transition: all 0.2s ease;
+    }
+
+    .house-search-clear:hover {
+        background: #f3efe7;
+        color: #315b72;
+    }
+
+
+    /* =========================
        ADD BUTTON
     ========================= */
 
@@ -67,8 +168,8 @@
 
         border-radius: 11px;
 
-        background: #315b72;
-        border: 1px solid #315b72;
+        background: #0cc0df;
+        border: 1px solid #0cc0df;
 
         color: #ffffff;
 
@@ -91,6 +192,27 @@
         box-shadow:
             0 5px 12px
             rgba(49, 91, 114, 0.20);
+    }
+
+
+    /* =========================
+       SEARCH INFO
+    ========================= */
+
+    .search-result-info {
+        padding: 12px 25px;
+
+        background: #faf7f1;
+
+        border-bottom: 1px solid #eee8dd;
+
+        font-size: 12px;
+
+        color: #7a7d7c;
+    }
+
+    .search-result-info strong {
+        color: #315b72;
     }
 
 
@@ -185,7 +307,7 @@
     .voltage-value {
         font-weight: 600;
 
-        color: #315b72;
+        color: #0cc0df;
     }
 
 
@@ -271,7 +393,7 @@
 
     .btn-detail {
         background: #e7f0f4;
-        color: #315b72;
+        color: #0cc0df;
         border-color: #d9e7ed;
     }
 
@@ -332,7 +454,7 @@
         align-items: center;
         justify-content: center;
 
-        color: #315b72;
+        color: #0cc0df;
     }
 
     .empty-state-icon svg {
@@ -362,11 +484,34 @@
        RESPONSIVE
     ========================= */
 
-    @media (max-width: 800px) {
+    @media (max-width: 950px) {
 
         .house-card-header {
             align-items: flex-start;
             flex-direction: column;
+        }
+
+        .house-header-actions {
+            width: 100%;
+        }
+
+        .house-search {
+            flex: 1;
+            width: auto;
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .house-header-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .house-search {
+            width: 100%;
         }
 
         .btn-add-house {
@@ -404,15 +549,92 @@
         </div>
 
 
-        <a
-            href="{{ route('admin.houses.create') }}"
-            class="btn-add-house"
-        >
-            + Tambah Rumah
-        </a>
+        {{-- SEARCH + TAMBAH --}}
+
+        <div class="house-header-actions">
+
+
+            {{-- SEARCH --}}
+
+            <form
+                method="GET"
+                action="{{ route('admin.houses.index') }}"
+                class="house-search"
+            >
+
+                <svg
+                    class="house-search-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                >
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m21 21-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+
+                </svg>
+
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ request('search') }}"
+                    placeholder="Cari rumah, pemilik, alamat..."
+                    autocomplete="off"
+                >
+
+
+                @if(request('search'))
+
+                    <a
+                        href="{{ route('admin.houses.index') }}"
+                        class="house-search-clear"
+                        title="Hapus pencarian"
+                    >
+                        ×
+                    </a>
+
+                @endif
+
+            </form>
+
+
+            {{-- TAMBAH RUMAH --}}
+
+            <a
+                href="{{ route('admin.houses.create') }}"
+                class="btn-add-house"
+            >
+                + Tambah Rumah
+            </a>
+
+        </div>
 
     </div>
 
+
+    {{-- =========================
+        SEARCH RESULT INFO
+    ========================= --}}
+
+    @if(request('search'))
+
+        <div class="search-result-info">
+
+            Menampilkan hasil pencarian untuk:
+
+            <strong>
+                "{{ request('search') }}"
+            </strong>
+
+        </div>
+
+    @endif
 
 
     {{-- =========================
@@ -505,17 +727,13 @@
                         @if($house->status === 'active')
 
                             <span class="status-badge status-active">
-
                                 Aktif
-
                             </span>
 
                         @else
 
                             <span class="status-badge status-blocked">
-
                                 Diblokir
-
                             </span>
 
                         @endif
@@ -613,7 +831,17 @@
                         class="empty-state"
                     >
 
-                        Belum ada rumah yang terdaftar.
+                        @if(request('search'))
+
+                            Tidak ditemukan data rumah
+                            dengan kata kunci
+                            "{{ request('search') }}".
+
+                        @else
+
+                            Belum ada rumah yang terdaftar.
+
+                        @endif
 
                     </td>
 
@@ -637,7 +865,7 @@
 
         <div class="house-pagination">
 
-            {{ $houses->links() }}
+            {{ $houses->appends(request()->query())->links() }}
 
         </div>
 

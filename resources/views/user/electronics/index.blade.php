@@ -48,8 +48,8 @@
 
         border-radius: 11px;
 
-        background: #315b72;
-        border: 1px solid #315b72;
+        background: #0cc0df;
+        border: 1px solid #0cc0df;
 
         color: #ffffff;
         font-size: 13px;
@@ -183,7 +183,7 @@
 
     .btn-detail {
         background: #e7f0f4;
-        color: #315b72;
+        color: #0cc0df;
     }
 
     .btn-detail:hover {

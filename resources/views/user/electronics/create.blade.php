@@ -78,7 +78,7 @@
 
     .form-input:focus,
     .form-select:focus {
-        border-color: #315b72;
+        border-color: #0cc0df;
         box-shadow: 0 0 0 3px rgba(49, 91, 114, 0.10);
     }
 
@@ -150,9 +150,9 @@
     }
 
     .btn-save {
-        background: #315b72;
+        background: #0cc0df;
         color: #ffffff;
-        border: 1px solid #315b72;
+        border: 1px solid #0cc0df;
         min-width: 165px;
         box-shadow: 0 3px 8px rgba(49, 91, 114, 0.15);
     }

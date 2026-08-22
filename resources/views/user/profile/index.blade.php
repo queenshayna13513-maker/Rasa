@@ -81,7 +81,7 @@
     .form-textarea { min-height: 95px; resize: vertical; }
 
     .form-input:focus, .form-textarea:focus {
-        border-color: #315b72;
+        border-color: #0cc0df;
         box-shadow: 0 0 0 3px rgba(49, 91, 114, .06);
     }
 
@@ -122,7 +122,7 @@
         padding: 0 18px;
         border: 0;
         border-radius: 9px;
-        background: #315b72;
+        background: #0cc0df;
         color: white;
         font-size: 12px;
         font-weight: 600;
@@ -135,19 +135,7 @@
         box-shadow: 0 4px 8px rgba(49, 91, 114, 0.15);
     }
 
-    .alert-success {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 16px;
-        margin-bottom: 20px;
-        background: #f0fdf4;
-        border: 1px solid #bbf7d0;
-        border-radius: 10px;
-        color: #15803d;
-        font-size: 12px;
-        font-weight: 500;
-    }
+    
 
     /* =========================================================
        SIDE CARDS (STATUS & STATS)
@@ -222,7 +210,7 @@
         font-size: 25px;
         line-height: 1;
         font-weight: 700;
-        color: #315b72;
+        color: #0cc0df;
         letter-spacing: -0.03em;
     }
     .stat-unit { font-size: 11px; font-weight: 500; color: #8a9091; }
@@ -268,15 +256,7 @@
 </style>
 
 {{-- NOTIFIKASI SUKSES --}}
-@if(session('success'))
-    <div class="alert-success">
-        <!-- Icon Check Circle -->
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        {{ session('success') }}
-    </div>
-@endif
+
 
 @if($house)
 
@@ -294,7 +274,7 @@
                 </div>
                 <div class="house-icon">
                     <!-- Icon House -->
-                    <svg class="w-4 h-4 text-[#315b72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-[#0cc0df]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                     </svg>
                 </div>
@@ -445,7 +425,7 @@
                     </div>
                     <div class="stat-icon">
                         <!-- Icon Zap -->
-                        <svg class="w-4 h-4 text-[#315b72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-[#0cc0df]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
@@ -469,7 +449,7 @@
                     </div>
                     <div class="stat-icon">
                         <!-- Icon Gauge -->
-                        <svg class="w-4 h-4 text-[#315b72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-[#0cc0df]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
@@ -495,7 +475,7 @@
             <p>Informasi rumah yang terhubung dengan akun Anda.</p>
         </div>
         <div class="house-icon">
-            <svg class="w-4 h-4 text-[#315b72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-[#0cc0df]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
             </svg>
         </div>
@@ -503,7 +483,7 @@
 
     <div class="empty-state">
         <div class="empty-icon">
-            <svg class="w-6 h-6 text-[#315b72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-[#0cc0df]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
             </svg>
         </div>

@@ -71,7 +71,7 @@
 
             border-radius: 12px;
 
-            background: #315b72;
+            background: #0cc0df;
 
             display: flex;
             align-items: center;
@@ -99,7 +99,7 @@
 
             letter-spacing: 0.04em;
 
-            color: #315b72;
+            color: #0cc0df;
         }
 
 
@@ -152,14 +152,14 @@
         .rasa-nav-link:hover {
             background: #f3efe7;
 
-            color: #315b72;
+            color: #0cc0df;
         }
 
 
         .rasa-nav-link-active {
             background: #e7f0f4;
 
-            color: #315b72;
+            color: #0cc0df;
 
             font-weight: 600;
         }
@@ -308,7 +308,7 @@
 
             border: 1px solid #c9dce5;
 
-            color: #315b72;
+            color: #0cc0df;
         }
 
 

@@ -85,7 +85,7 @@
 
     .rasa-alert-icon-normal {
         background: #E7F0F4;
-        color: #315B72;
+        color: #0cc0df;
     }
 
     .rasa-alert-dot {
@@ -104,7 +104,7 @@
     }
 
     .rasa-alert-dot-normal {
-        background: #315B72;
+        background: #0cc0df;
     }
 
     .rasa-alert-title {
@@ -140,7 +140,7 @@
         padding: 4px 8px;
         border-radius: 7px;
         background: #E7F0F4;
-        color: #315B72;
+        color: #0cc0df;
         font-size: 9px;
         font-weight: 600;
     }
@@ -347,7 +347,7 @@
 
                         <span class="rasa-alert-new">
 
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#315B72]"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#0cc0df]"></span>
 
                             Baru
 

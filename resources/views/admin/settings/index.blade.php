@@ -102,7 +102,7 @@
     }
 
     .settings-input:focus {
-        border-color: #315b72;
+        border-color: #0cc0df;
 
         box-shadow:
             0 0 0 3px
@@ -169,7 +169,7 @@
         font-size: 13px;
         font-weight: 600;
 
-        color: #315b72;
+        color: #0cc0df;
     }
 
     .settings-note-text {
@@ -178,7 +178,7 @@
         font-size: 12px;
         line-height: 1.5;
 
-        color: #315b72;
+        color: #0cc0df;
     }
 
 
@@ -212,9 +212,9 @@
 
         border-radius: 11px;
 
-        background: #315b72;
+        background: #0cc0df;
 
-        border: 1px solid #315b72;
+        border: 1px solid #0cc0df;
 
         color: #ffffff;
 

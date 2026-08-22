@@ -45,8 +45,8 @@
     .admin-welcome {
         position: relative;
         overflow: hidden;
-        background: #315b72;
-        border: 1px solid #315b72;
+        background: #0cc0df;
+        border: 1px solid #0cc0df;
         border-radius: 18px;
         padding: 30px;
         margin-bottom: 25px;
@@ -155,7 +155,7 @@
         font-size: 30px;
         line-height: 1;
         font-weight: 700;
-        color: #315b72;
+        color: #0cc0df;
     }
 
     .admin-stat-description {
@@ -178,7 +178,7 @@
     .admin-stat-icon svg {
         width: 20px;
         height: 20px;
-        color: #315b72;
+        color: #0cc0df;
     }
 
 
@@ -303,7 +303,7 @@
                     </p>
 
                     <h3 class="admin-stat-value">
-                        {{ $totalUsers ?? 1 }}
+                        {{ $totalUsers ?? 0 }}
                     </h3>
 
                     <p class="admin-stat-description">

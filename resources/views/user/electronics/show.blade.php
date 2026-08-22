@@ -86,7 +86,7 @@
 
     .status-badge.active {
         background: #e7f0f4;
-        color: #315b72;
+        color: #0cc0df;
         border: 1px solid #d9e7ed;
     }
 
@@ -103,7 +103,7 @@
     }
 
     .status-badge.active .status-dot {
-        background: #315b72;
+        background: #0cc0df;
     }
 
     .status-badge.inactive .status-dot {
@@ -140,7 +140,7 @@
     }
 
     .watt-card .spec-label {
-        color: #315b72;
+        color: #0cc0df;
     }
 
     .spec-value {
@@ -151,7 +151,7 @@
     }
 
     .watt-card .spec-value {
-        color: #315b72;
+        color: #0cc0df;
     }
 
     .detail-actions {
@@ -179,7 +179,7 @@
 
     .btn-edit {
         background: #e7f0f4;
-        color: #315b72;
+        color: #0cc0df;
         border: 1px solid #d9e7ed;
     }
 

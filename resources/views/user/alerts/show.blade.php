@@ -103,7 +103,7 @@
     }
 
     .rasa-btn-primary {
-        background: #315B72;
+        background: #0cc0df;
         color: #FFFFFF;
         box-shadow: 0 3px 8px rgba(49, 91, 114, 0.12);
     }

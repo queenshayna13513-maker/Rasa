@@ -147,7 +147,7 @@
     .voltage-value {
         font-weight: 700;
 
-        color: #315b72;
+        color: #0cc0df;
     }
 
 
@@ -258,7 +258,7 @@
     .btn-edit {
         background: #e7f0f4;
 
-        color: #315b72;
+        color: #0cc0df;
 
         border: 1px solid #d9e7ed;
     }
