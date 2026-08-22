@@ -25,10 +25,8 @@
         align-items: center;
         justify-content: space-between;
         gap: 20px;
-
         padding-bottom: 22px;
         margin-bottom: 24px;
-
         border-bottom: 1px solid #e8e1d6;
     }
 
@@ -45,33 +43,71 @@
         color: #7a7d7c;
     }
 
+    /* Wrapper untuk menumpuk badge agar rapi */
+    .badge-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+    }
+
     .registered-badge {
         display: inline-flex;
         align-items: center;
         gap: 7px;
-
         padding: 7px 12px;
-
         border-radius: 999px;
-
         background: #eaf4ec;
         color: #15803d;
-
         border: 1px solid #d5ead9;
-
         font-size: 11px;
         font-weight: 600;
-
         white-space: nowrap;
     }
 
     .registered-dot {
         width: 7px;
         height: 7px;
-
         border-radius: 50%;
-
         background: #22c55e;
+    }
+
+    /* Style baru khusus untuk Status Badge */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .status-badge.active {
+        background: #e7f0f4;
+        color: #315b72;
+        border: 1px solid #d9e7ed;
+    }
+
+    .status-badge.inactive {
+        background: #f3f4f6;
+        color: #4b5563;
+        border: 1px solid #e5e7eb;
+    }
+
+    .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+    }
+
+    .status-badge.active .status-dot {
+        background: #315b72;
+    }
+
+    .status-badge.inactive .status-dot {
+        background: #9ca3af;
     }
 
     .spec-grid {
@@ -83,7 +119,6 @@
     .spec-card {
         border-radius: 14px;
         padding: 18px;
-
         border: 1px solid transparent;
     }
 
@@ -99,10 +134,8 @@
 
     .spec-label {
         margin: 0;
-
         font-size: 12px;
         font-weight: 500;
-
         color: #7a7d7c;
     }
 
@@ -112,10 +145,8 @@
 
     .spec-value {
         margin-top: 7px;
-
         font-size: 22px;
         font-weight: 700;
-
         color: #2f414b;
     }
 
@@ -128,10 +159,8 @@
         justify-content: flex-end;
         align-items: center;
         gap: 12px;
-
         margin-top: 28px;
         padding-top: 22px;
-
         border-top: 1px solid #e8e1d6;
     }
 
@@ -139,17 +168,12 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-
         min-height: 44px;
         padding: 0 20px;
-
         border-radius: 11px;
-
         font-size: 13px;
         font-weight: 600;
-
         text-decoration: none;
-
         transition: all 0.2s ease;
     }
 
@@ -177,7 +201,6 @@
     }
 
     @media (max-width: 650px) {
-
         .electronic-detail-wrapper {
             max-width: 100%;
         }
@@ -189,6 +212,14 @@
         .electronic-detail-header {
             align-items: flex-start;
             flex-direction: column;
+        }
+
+        /* Pada mobile, badge akan rata kiri agar sejajar dengan judul */
+        .badge-wrapper {
+            align-items: flex-start;
+            width: 100%;
+            flex-direction: row; /* Berdampingan di mobile agar hemat ruang vertikal */
+            flex-wrap: wrap;
         }
 
         .spec-grid {
@@ -211,13 +242,10 @@
 
     <div class="electronic-detail-card">
 
-
         {{-- HEADER --}}
-
         <div class="electronic-detail-header">
 
             <div>
-
                 <h3 class="electronic-detail-title">
                     {{ $electronic->name }}
                 </h3>
@@ -225,82 +253,62 @@
                 <p class="electronic-detail-category">
                     {{ $electronic->category }}
                 </p>
+            </div>
+
+            {{-- WRAPPER BADGE (Terdaftar + Status) --}}
+            <div class="badge-wrapper">
+                
+                {{-- BADGE TERDAFTAR (TETAP DIPERTAHANKAN) --}}
+                <span class="registered-badge">
+                    <span class="registered-dot"></span>
+                    Terdaftar
+                </span>
+
+                {{-- BADGE STATUS (BARU) --}}
+                @if($electronic->status === 'active')
+                    <span class="status-badge active">
+                        <span class="status-dot"></span>
+                        Aktif
+                    </span>
+                @else
+                    <span class="status-badge inactive">
+                        <span class="status-dot"></span>
+                        Tidak Aktif
+                    </span>
+                @endif
 
             </div>
 
-
-            <span class="registered-badge">
-
-                <span class="registered-dot"></span>
-
-                Terdaftar
-
-            </span>
-
         </div>
-
 
 
         {{-- SPECIFICATIONS --}}
-
         <div class="spec-grid">
 
-
             {{-- TEGANGAN --}}
-
             <div class="spec-card voltage-card">
-
-                <p class="spec-label">
-                    Tegangan
-                </p>
-
-                <p class="spec-value">
-                    {{ $electronic->voltage }} V
-                </p>
-
+                <p class="spec-label">Tegangan</p>
+                <p class="spec-value">{{ $electronic->voltage }} V</p>
             </div>
 
-
-
             {{-- DAYA --}}
-
             <div class="spec-card watt-card">
-
-                <p class="spec-label">
-                    Daya
-                </p>
-
-                <p class="spec-value">
-                    {{ $electronic->wattage }} W
-                </p>
-
+                <p class="spec-label">Daya</p>
+                <p class="spec-value">{{ $electronic->watt }} W</p>
             </div>
 
         </div>
 
 
-
         {{-- BUTTON --}}
-
         <div class="detail-actions">
 
-            <a
-                href="{{ route('user.electronics.edit', $electronic) }}"
-                class="detail-btn btn-edit"
-            >
-
+            <a href="{{ route('user.electronics.edit', $electronic) }}" class="detail-btn btn-edit">
                 Edit
-
             </a>
 
-
-            <a
-                href="{{ route('user.electronics.index') }}"
-                class="detail-btn btn-back"
-            >
-
+            <a href="{{ route('user.electronics.index') }}" class="detail-btn btn-back">
                 Kembali
-
             </a>
 
         </div>
