@@ -92,7 +92,9 @@
             <p class="text-sm text-[#7D858A] mt-1">
                 Pantau kondisi listrik rumah dengan tenang.
             </p>
+            
         </div>
+        
 
         <div class="hidden sm:flex items-center gap-2
                     px-3 py-2 rounded-xl
