@@ -358,10 +358,10 @@
                     <input
                         id="wattage"
                         type="number"
-                        name="wattage"
+                        name="watt"
                         value="{{ old(
-                            'wattage',
-                            $electronic->wattage
+                            'watt',
+                            $electronic->watt
                         ) }}"
                         class="form-input"
                     >
@@ -374,6 +374,22 @@
 
             </div>
 
+        </div>
+
+        {{-- STATUS PERANGKAT (BARU) --}}
+        <div class="form-group">
+            <label for="status" class="form-label">Status Perangkat</label>
+            <select id="status" name="status" class="form-select">
+                <option value="active" @selected(old('status', $electronic->status) === 'active')>
+                    Aktif
+                </option>
+                <option value="inactive" @selected(old('status', $electronic->status) === 'inactive')>
+                    Tidak Aktif
+                </option>
+            </select>
+            @error('status')
+                <div class="error-message">{{ $message }}</div>
+            @enderror
         </div>
 
 

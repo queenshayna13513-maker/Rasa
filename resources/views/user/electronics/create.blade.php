@@ -373,8 +373,8 @@
                     <input
                         id="wattage"
                         type="number"
-                        name="wattage"
-                        value="{{ old('wattage') }}"
+                        name="watt"
+                        value="{{ old('watt') }}"
                         placeholder="100"
                         class="form-input">
 
@@ -384,7 +384,7 @@
 
                 </div>
 
-                @error('wattage')
+                @error('watt')
 
                     <div class="error-message">
                         {{ $message }}
@@ -393,6 +393,43 @@
                 @enderror
 
             </div>
+
+        </div>
+
+        {{-- STATUS PERANGKAT (BARU) --}}
+
+        <div class="form-group">
+
+            <label
+                for="status"
+                class="form-label">
+
+                Status Perangkat
+
+            </label>
+
+            <select
+                id="status"
+                name="status"
+                class="form-select">
+
+                <option value="active" {{ old('status', 'active') == 'active' ? 'selected' : '' }}>
+                    Aktif
+                </option>
+
+                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
+                    Tidak Aktif
+                </option>
+
+            </select>
+
+            @error('status')
+
+                <div class="error-message">
+                    {{ $message }}
+                </div>
+
+            @enderror
 
         </div>
 
