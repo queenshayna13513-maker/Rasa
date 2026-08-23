@@ -13,7 +13,17 @@ use App\Http\Controllers\User\HouseProfileController;
 use App\Http\Controllers\User\EmergencyController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ElectricityReadingController;
 
+Route::post('/electricity', [
+    ElectricityReadingController::class,
+    'store'
+]);
+
+Route::get('/electricity/latest', [
+    ElectricityReadingController::class,
+    'latest'
+]);
 
 // ======================================================
 // PUBLIC
