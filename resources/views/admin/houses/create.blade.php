@@ -348,8 +348,8 @@
 
                 <input
                     type="text"
-                    name="owner_name"
-                    value="{{ old('owner_name') }}"
+                    name="user_id"
+                    value="{{ old('user_id') }}"
                     placeholder="Nama pemilik rumah"
                     class="form-input"
                 >
