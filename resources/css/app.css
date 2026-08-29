@@ -1,3 +1,250 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* =====================================================
+   RASA GLOBAL THEME
+   ===================================================== */
+
+:root {
+    --rasa-bg: #f3efe7;
+    --rasa-card: #fffdf8;
+    --rasa-blue: #315b72;
+    --rasa-blue-dark: #274b5e;
+    --rasa-border: #e5ded2;
+    --rasa-text: #2f414b;
+    --rasa-muted: #7a7d7c;
+}
+
+
+/* =====================================================
+   BODY
+   ===================================================== */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+
+    background: var(--rasa-bg) !important;
+    color: var(--rasa-text);
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =====================================================
+   HILANGKAN BACKGROUND GELAP LARAVEL BREEZE
+   ===================================================== */
+
+.min-h-screen {
+    background: var(--rasa-bg) !important;
+}
+
+
+/* =====================================================
+   LOGIN PAGE
+   ===================================================== */
+
+/*
+|--------------------------------------------------------------------------
+| Container utama login
+|--------------------------------------------------------------------------
+*/
+
+body:has(form[action*="login"]) {
+    background: var(--rasa-bg) !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Wrapper halaman login
+|--------------------------------------------------------------------------
+*/
+
+body:has(form[action*="login"]) .min-h-screen {
+    background: var(--rasa-bg) !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Hilangkan frame / kotak gelap bawaan
+|--------------------------------------------------------------------------
+*/
+
+body:has(form[action*="login"]) .sm\:max-w-md {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+
+/* =====================================================
+   LOGIN CARD
+   ===================================================== */
+
+body:has(form[action*="login"]) .sm\:max-w-md > div {
+    background: var(--rasa-card) !important;
+
+    border: 1px solid var(--rasa-border) !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 15px 40px rgba(49, 91, 114, 0.10) !important;
+}
+
+
+/* =====================================================
+   INPUT
+   ===================================================== */
+
+body:has(form[action*="login"]) input[type="email"],
+body:has(form[action*="login"]) input[type="password"] {
+
+    background: #f4f7fa !important;
+
+    border: 1px solid #d8e0e5 !important;
+
+    color: var(--rasa-text) !important;
+
+    border-radius: 12px !important;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease !important;
+}
+
+
+body:has(form[action*="login"]) input[type="email"]:focus,
+body:has(form[action*="login"]) input[type="password"]:focus {
+
+    background: #ffffff !important;
+
+    border-color: var(--rasa-blue) !important;
+
+    box-shadow:
+        0 0 0 4px rgba(49, 91, 114, 0.10) !important;
+
+    outline: none !important;
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+   ===================================================== */
+
+body:has(form[action*="login"]) button[type="submit"] {
+
+    background: var(--rasa-blue) !important;
+
+    border-color: var(--rasa-blue) !important;
+
+    border-radius: 12px !important;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease !important;
+}
+
+
+body:has(form[action*="login"]) button[type="submit"]:hover {
+
+    background: var(--rasa-blue-dark) !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(49, 91, 114, 0.18) !important;
+}
+
+
+body:has(form[action*="login"]) button[type="submit"]:active {
+
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   LINK
+   ===================================================== */
+
+body:has(form[action*="login"]) a {
+
+    color: var(--rasa-blue);
+
+    transition:
+        color .2s ease;
+}
+
+
+body:has(form[action*="login"]) a:hover {
+
+    color: var(--rasa-blue-dark);
+}
+
+
+/* =====================================================
+   CHECKBOX
+   ===================================================== */
+
+body:has(form[action*="login"]) input[type="checkbox"] {
+
+    accent-color: var(--rasa-blue);
+}
+
+
+/* =====================================================
+   ANIMASI LOGIN
+   ===================================================== */
+
+body:has(form[action*="login"]) .sm\:max-w-md {
+
+    animation:
+        rasaLoginCard .6s ease-out;
+}
+
+
+@keyframes rasaLoginCard {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 640px) {
+
+    body:has(form[action*="login"]) .sm\:max-w-md > div {
+
+        border-radius: 18px !important;
+
+        box-shadow:
+            0 10px 25px rgba(49, 91, 114, 0.08) !important;
+    }
+
+}
