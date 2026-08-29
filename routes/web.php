@@ -15,15 +15,10 @@ use App\Http\Controllers\User\EmergencyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ElectricityReadingController;
 
-Route::post('/electricity', [
-    ElectricityReadingController::class,
-    'store'
-]);
 
-Route::get('/electricity/latest', [
-    ElectricityReadingController::class,
-    'latest'
-]);
+Route::post('/api/electricity', [ElectricityReadingController::class, 'store']);
+Route::get('/api/electricity/latest', [ElectricityReadingController::class, 'latest']);
+
 
 // ======================================================
 // PUBLIC
@@ -33,7 +28,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-
+Route::post('/tes-simpan', function (\Illuminate\Http\Request $request) {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Rute Web Berhasil!',
+        'data' => $request->all()
+    ]);
+});
 
 // ======================================================
 // AUTHENTICATED

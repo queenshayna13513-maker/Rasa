@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
@@ -16,11 +17,18 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/auth.php'));
         },
     )
-    ->withMiddleware(function (Middleware $middleware) {
+    
+   ->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+            'role' => App\Http\Middleware\RoleMiddleware::class
+        ]);
 
-     $middleware->alias([
-        'role' => \App\Http\Middleware\RoleMiddleware::class,
+    $middleware->validateCsrfTokens(except: [
+        'api/electricity',
+        'api/*',
     ]);
+
+
 
 })
     ->withExceptions(function (Exceptions $exceptions): void {
